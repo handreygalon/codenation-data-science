@@ -175,15 +175,15 @@ dataframe['categoria_acessos'] = ['maior_que_300' if x > 300 else 'menor_que_300
 dataframe_2 = pd.DataFrame({'site': ['site1', 'site1', 'site2', 'site2', 'site3'],
                'suporte': ['Carlos', 'Carlos', 'Maria', 'Maria', 'Ezequiel']})
 
-# Merge
+# Merge - Left join
 dataframe.merge(dataframe_2, on = 'site', how = 'left')
 
 # Save dataframe as csv file
-dataframe.to_csv('dataframe.csv', sep = ';', decimal = ',', index = False)
+dataframe.to_csv('dataframe.csv', sep = ';', decimal = ',', index = False)  # index = True -> add a column with the index (0,1,...,n)
 
 # Reading data from a csv file
 dataframe_lido = pd.read_csv('dataframe.csv', sep = ';', decimal = ',')
-dataframe_lido.head()
+dataframe_lido.head()  # See read dataframe
 json = pd.read_json('https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/index.json')
 json['offers'][99]
 json.reset_index(inplace = True)
