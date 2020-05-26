@@ -58,3 +58,13 @@ df['aluguel_alto'] = ['Alto' if x > 5000 else 'Baixo' for x in df['valor_aluguel
 df['aluguel_alto'].value_counts()
 df.groupby('aluguel_alto')['bathroom'].mean()
 
+# How to say statistically, the more bathrooms, the higher the rent - Correlation
+df[['valor_aluguel', 'bathroom']].corr(method = 'spearman') # 0.71 is a strong correlation
+
+# Create a list with the numeric columns
+aux = pd.DataFrame({'colunas' : df.columns, 'tipos' : df.dtypes})
+lista = list(aux[aux['tipos'] == 'int64']['colunas'])
+
+for coluna in lista:
+    print(coluna)
+    print(df[['valor_aluguel', coluna]].corr(method = 'spearman'))
